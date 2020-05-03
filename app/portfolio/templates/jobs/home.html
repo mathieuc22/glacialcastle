@@ -1,62 +1,22 @@
-<!doctype html>
-<html lang="en">
-{% load static %}
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+{% extends 'base.html' %}
 
-    <title>Mathieu Collet</title>
+{% block content %}
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  </head>
+  <div class="row">
+    {% for job in jobs.all %}
 
-  <body>
-
-    <main role="main">
-
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">Mathieu Collet</h1>
-          <p class="lead text-muted">I start programming...</p>
-          <p>
-            <a href="mailto:mathieu.collet@gmail.com" class="btn btn-primary my-2">Email Me</a>
-          </p>
-          <img src="{% static 'me.jpg' %}" height="300" />
-        </div>
-      </section>
-
-      <div class="album py-5 bg-light">
-        <div class="container">
-
-          <div class="row">
-            {% for job in jobs.all %}
-
-            <div class="col-md-4">
-              <a href="{% url 'detail' job.id %}">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="{{ job.image.url }}">
-                <div class="card-body">
-                  <p class="card-text">{{ job.summary }}</p>
-                </div>
-              </div>
-              </a>
+      <div class="col-md-4">
+        <a href="{% url 'detail' job.id %}">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" src="{{ job.image.url }}">
+            <div class="card-body">
+              <p class="card-text">{{ job.summary }}</p>
             </div>
-
-            {% endfor %}
           </div>
-
-        </div>
+        </a>
       </div>
 
-    </main>
+    {% endfor %}
+  </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static 'js/bootstrap.js' %}" ></script>
-    <script src="{% static 'jquery-3.3.1.min.js' %}" ></script>
-  </body>
-</html>
+{% endblock %}
