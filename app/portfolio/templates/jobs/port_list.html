@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">MathieuC</h1>
+      <p class="lead text-muted">I start programming...</p>
+      <p>
+        <a href="mailto:mathieu.collet@gmail.com" class="btn btn-primary my-2">Email Me</a>
+      </p>
+      <img src="{% static 'me.jpg' %}" height="300" />
+    </div>
+  </section>
+
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+        {% for job in jobs.all %}
+
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" src="{{ job.image.url }}">
+
+            <div class="card-body">
+              <p class="card-text">{{ job.summary }}</p>
+
+              <div class="d-flex justify-content-between align-items-center">
+                <a class="btn btn-sm btn-outline-secondary btn-block" href="{% url 'port_detail' job.id %}"
+                  role="button">View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+  </div><!-- /.album -->
+</main><!-- /.main -->
+{% endblock %}
